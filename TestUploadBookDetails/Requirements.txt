@@ -1,0 +1,25 @@
+https://stackoverflow.com/questions/35410171/how-to-insert-image-to-mysql-database-in-netbeans-java
+
+
+for sql 
+CREATE TABLE books(
+    BOOK_ID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    BOOK_TITLE varchar(60),
+    BOOK_AUTHOR varchar(20), 
+    BOOK_TYPE varchar(20),
+    BOOK_DESCRIPTION varchar(100),
+    BOOK_COVER mediumblob
+);
+
+for derby
+
+CREATE TABLE books(
+    BOOK_ID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
+    BOOK_TITLE varchar(60),
+    BOOK_AUTHOR varchar(20), 
+    BOOK_TYPE varchar(20),
+    BOOK_DESCRIPTION varchar(100),
+    BOOK_COVER blob
+);
+
+https://www.codejava.net/coding/upload-files-to-database-servlet-jsp-mysql
