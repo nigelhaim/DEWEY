@@ -26,5 +26,9 @@
              <br>
             <input type="submit" value="Upload Book">
         </form>
+        
+        <form action="BookList" method="POST">
+            <input type="submit" value="Go to the list of books">
+        </form>
     </body>
 </html>
