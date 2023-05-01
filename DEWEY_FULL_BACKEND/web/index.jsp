@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <a href="Edit_collections.jsp">Go to edit collections page</a>
     </body>
 </html>

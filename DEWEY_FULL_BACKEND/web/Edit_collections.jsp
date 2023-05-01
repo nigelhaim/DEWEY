@@ -14,13 +14,19 @@
     <body>
         <h1>Insert a book</h1>
         <form action="Edit_Collections" method="POST" enctype="multipart/form-data">
-            <h1>Book title: </h1><input type="text" name="title" placeholder="title">
+            <h1>Book title:</h1><input type="text" name="title" placeholder="title">
             <br>
             <h1>Book author:</h1><input type="text" name="author" placeholder="author">
             <br>
-            <h1>Book Type</h1><input type="text" name="type" placeholder="type">
+            <h1>Book Type</h1>
+            <select name="type">
+                <option></option>
+                <option>Literature</option>
+                <option>Sci-fi</option>
+                <option>Educational</option>
+            </select>
             <br>
-            <textarea name="description" placeholder="description"></textarea>
+            <input name="description" placeholder="description">
              <br>
              <input name="quantity" placeholder="quantity">
              <br>

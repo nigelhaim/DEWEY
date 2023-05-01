@@ -3,7 +3,7 @@ CREATE TABLE BOOKS(
     BOOK_TITLE varchar(60),
     BOOK_AUTHOR varchar(20), 
     BOOK_TYPE varchar(20),
-    BOOK_DESCRIPTION varchar(100),
+    BOOK_DESCRIPTION varchar(1000),
     BOOK_QUANTITY int, 
     BOOK_COVER mediumblob
 );

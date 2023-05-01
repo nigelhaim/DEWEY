@@ -24,6 +24,7 @@ import javax.servlet.http.Part;
  *
  * @author nigel
  */
+@MultipartConfig(maxFileSize = 16177215)
 public class Edit_Collections extends HttpServlet {
 
     /**
@@ -69,24 +70,14 @@ public class Edit_Collections extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. 
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Edit_Collections</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Edit_Collections at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }*/
-        try(PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
+
+            
             String BOOK_TITLE = request.getParameter("title").trim();
             String BOOK_AUTHOR = request.getParameter("author").trim();
             String BOOK_TYPE = request.getParameter("type").trim();
             String BOOK_DESCRIPTION = request.getParameter("description").trim();
-            int BOOK_QUANTITY = Integer.parseInt(request.getParameter("quantity").trim());
+            int BOOK_QUANTITY = Integer.parseInt(request.getParameter("description").trim());
             InputStream inputStream = null;
             
             Part BOOK_COVER = request.getPart("cover");
@@ -134,9 +125,8 @@ public class Edit_Collections extends HttpServlet {
             request.setAttribute("Message", message);
              
             // forwards to the message page
-            response.sendRedirect("Confirm.jsp");
+            response.sendRedirect("Edit_collections.jsp");
         }
-            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
