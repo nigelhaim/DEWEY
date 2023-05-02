@@ -5,28 +5,23 @@
 package controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
+
 /**
  *
  * @author nigel
  */
-@MultipartConfig(maxFileSize = 16177215)
-public class Edit_Collections extends HttpServlet {
+public class Get_Books extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,15 +31,11 @@ public class Edit_Collections extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-        //=====Connection=====//
+  
     Connection conn;
-    String message = null;
-    //=====String key====//
-    String key = null;
-    int attempt = 0; 
     public void init(ServletConfig config) throws ServletException
     {
-        System.out.print("Test123");
+          
         try{
             Class.forName(config.getInitParameter("jdbcClassName"));
             String username = config.getInitParameter("dbUserName");
@@ -59,9 +50,9 @@ public class Edit_Collections extends HttpServlet {
                     .append(config.getInitParameter("databaseName"));
                     //.append(config.getInitParameter(""));
                            
-            System.out.println(url);
+            
             conn = DriverManager.getConnection(url.toString(), username, password);
-            key = config.getInitParameter("key");//Gets the string key from the web.xml
+            
         }catch(SQLException sqle){
             System.out.print("An SQL Exception occur" + sqle.getMessage());
         }catch(ClassNotFoundException cnfe){
@@ -71,64 +62,30 @@ public class Edit_Collections extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-
-            
-            String BOOK_TITLE = request.getParameter("title").trim();
-            String BOOK_AUTHOR = request.getParameter("author").trim();
-            String BOOK_TYPE = request.getParameter("type").trim();
-            String BOOK_DESCRIPTION = request.getParameter("description").trim();
-            int BOOK_QUANTITY = Integer.parseInt(request.getParameter("quantity").trim());
-            InputStream inputStream = null;
-            
-            Part BOOK_COVER = request.getPart("cover");
-            
-            if(BOOK_COVER != null){
-                System.out.println(BOOK_COVER.getName());
-                System.out.println(BOOK_COVER.getSize());
-                System.out.println(BOOK_COVER.getContentType());
-                inputStream = BOOK_COVER.getInputStream();
+        /*try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. 
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Get_Books</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Get_Books at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>);
+        }   */
+        try{
+            if(conn != null){
+                String query = "SELECT * FROM BOOKS";
+                PreparedStatement stmt = conn.prepareStatement(query);
+                ResultSet books = stmt.executeQuery();
+                request.setAttribute("books", books);
+                request.getRequestDispatcher("Edit_collections.jsp").forward(request,response);
+            }else{
+                System.out.print("Connection is null");
             }
-            
-            try{
-                if(conn != null){
-                    System.out.println("Conn is connected");
-                    String query = "INSERT INTO BOOKS (BOOK_TITLE, BOOK_AUTHOR, BOOK_TYPE, BOOK_DESCRIPTION, BOOK_QUANTITY, BOOK_COVER) values (?, ?, ?, ?, ?, ?)";
-                    PreparedStatement stmt = conn.prepareStatement(query); 
-                    stmt.setString(1, BOOK_TITLE);
-                    stmt.setString(2, BOOK_AUTHOR);
-                    stmt.setString(3, BOOK_TYPE);
-                    stmt.setString(4, BOOK_DESCRIPTION);
-                    stmt.setInt(5, BOOK_QUANTITY);
-                    if(inputStream != null){
-                        stmt.setBlob(6, inputStream);
-                    }
-                    System.out.print(query);
-                    // sends the statement to the database server
-                    int row = stmt.executeUpdate();
-                    if (row > 0) {
-                        message = "File uploaded and saved into database";
-                    }
-                }
-            }       
-            catch(SQLException sqle){
-                System.out.print(sqle.getMessage());
-            }finally {
-                if (conn != null) {
-                    // closes the database connection
-                    try {
-                        conn.close();
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-            // sets the message in request scope
-            request.setAttribute("Message", message);
-            // forwards to the message page
-            //response.sendRedirect("index.jsp");
-
-            response.sendRedirect(request.getContextPath() + "/Get_Books");
+        }catch(SQLException sqle){
+            System.out.print("Exception:" + sqle);
         }
     }
 
