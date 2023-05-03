@@ -34,6 +34,7 @@
                     <th>Author</th>
                     <th>Type</th>
                     <th>Description</th>
+                    <th>Status</th>
                     <th>Quantity</th>
                     <th>Book cover</th>
                 </tr>
@@ -50,10 +51,29 @@
                     <td><%=r.getString("BOOK_TYPE") %> </td>
                     <td><%=r.getString("BOOK_DESCRIPTION") %> </td>
                     <td>
+                        <% 
+                            if(Integer.parseInt(r.getString("BOOK_QUANTITY")) > 0){ 
+                        %>  
+                            <h5>Available</h5>
+                        <%
+                            }
+                            else{ 
+                        %>  
+                            <h5>Not available</h5>
+                        <%
+                            }
+                        %>
+                    <td>
                         <form action="Edit_Book_Details">
                             <input name="BOOK_ID" type="hidden" value="<%=r.getString("BOOK_ID") %>">
                             <input name="BOOK_QUANTITY" type="hidden" value="<%=r.getString("BOOK_QUANTITY") %>">
-                            <input type="submit" value="-" name="button">
+                            <% 
+                                if(Integer.parseInt(r.getString("BOOK_QUANTITY")) > 0){ 
+                            %>  
+                                <input type="submit" value="-" name="button">
+                            <%
+                                }
+                            %>
                             <%=r.getString("BOOK_QUANTITY") %> 
                             <input type="submit" value="+" name="button">
                         </form>

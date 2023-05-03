@@ -105,18 +105,10 @@ public class Edit_Book_Details extends HttpServlet {
                             System.out.print("Incremented");
                             break;
                         case "-":
-                            if(quantity <= 1 ){
-                                String qry = "DELETE FROM BOOKS WHERE BOOK_ID = ?";
-                                PreparedStatement statement = conn.prepareStatement(qry);
-                                statement.setInt(1, id);
-                                int r = statement.executeUpdate();
-                            }
-                            else{
-                                String qry = "UPDATE BOOKS SET BOOK_QUANTITY = BOOK_QUANTITY - 1 WHERE BOOK_ID = ?";
-                                PreparedStatement statement = conn.prepareStatement(qry);
-                                statement.setInt(1, id);
-                                int r = statement.executeUpdate();
-                            }
+                            String qry = "UPDATE BOOKS SET BOOK_QUANTITY = BOOK_QUANTITY - 1 WHERE BOOK_ID = ?";
+                            PreparedStatement statement = conn.prepareStatement(qry);
+                            statement.setInt(1, id);
+                            int r = statement.executeUpdate();
                             break;
                     }
                 }else{
