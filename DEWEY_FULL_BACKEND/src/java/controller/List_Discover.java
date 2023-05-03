@@ -8,19 +8,23 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import javax.servlet.ServletConfig;
 
 /**
  *
  * @author nigel
  */
-public class Edit_Book_Details extends HttpServlet {
+public class List_Discover extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -30,11 +34,9 @@ public class Edit_Book_Details extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     Connection conn;
     public void init(ServletConfig config) throws ServletException
     {
-          
         try{
             Class.forName(config.getInitParameter("jdbcClassName"));
             String username = config.getInitParameter("dbUserName");
@@ -66,60 +68,48 @@ public class Edit_Book_Details extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Edit_Book_Details</title>");            
+            out.println("<title>Servlet List_Discover</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Edit_Book_Details at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet List_Discover at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }*/
         try{
-            String button = request.getParameter("button").trim();
-            if(button.equals("Delete")){
-                String books[] = request.getParameterValues("books");
-                for (String book : books) {
-                    int BOOK_ID = Integer.parseInt(book);
-                    System.out.println("Book id to be Deleted: " + BOOK_ID);
-                    if(conn != null){
-                        String query = "DELETE FROM BOOKS WHERE BOOK_ID = ?";
-                        PreparedStatement stmt = conn.prepareStatement(query);
-                        stmt.setInt(1, BOOK_ID);
-                        int row = stmt.executeUpdate();
-                    }
+            ArrayList<Object> Literature_books = new ArrayList();
+            ArrayList<Object> Scifi_books = new ArrayList();
+            ArrayList<Object> Programming_books = new ArrayList();
+            if(conn != null){
+                String query = "SELECT * FROM BOOKS";
+                PreparedStatement stmt = conn.prepareStatement(query);
+                ResultSet books = stmt.executeQuery();
+                while(books.next()){
+                    switch(books.getString("BOOK_TYPE")){
+                        case "Literature":
+                            System.out.print("Literature: " + books.getString("BOOK_ID"));
+                            Literature_books.add(books.getObject(1));
+                            break;
+                        case "Sci-fi":
+                            System.out.print("Sci-fi: " + books.getString("BOOK_ID"));
+                            Scifi_books.add(books.getObject(1));
+                            break;
+                        case "Programming":
+                            System.out.print("Programming: " + books.getString("BOOK_ID"));
+                            Programming_books.add(books.getObject(1));
+                            break;
+                    }       
                 }
+                request.setAttribute("books_Literature", Literature_books);
+                request.setAttribute("books_Scifi", Scifi_books);
+                request.setAttribute("books_Programming", Programming_books);
+                request.getRequestDispatcher("Discover.jsp").forward(request,response);
+            }else{
+                System.out.print("Connection is null");
             }
-            else{
-                if(conn != null){
-                    int id = Integer.parseInt(request.getParameter("BOOK_ID"));
-                    int quantity = Integer.parseInt(request.getParameter("BOOK_QUANTITY"));
-                    
-                    switch(button){
-                        case "":
-                            System.out.print("Button is null");
-                            break;
-                        case "+":
-                            System.out.print("Activated button: " + button);
-                            String q = "UPDATE BOOKS SET BOOK_QUANTITY = BOOK_QUANTITY + 1 WHERE BOOK_ID = ?";
-                            PreparedStatement s = conn.prepareStatement(q);
-                            s.setInt(1, id);
-                            int rstatement = s.executeUpdate();
-                            System.out.print("Incremented");
-                            break;
-                        case "-":
-                            String qry = "UPDATE BOOKS SET BOOK_QUANTITY = BOOK_QUANTITY - 1 WHERE BOOK_ID = ?";
-                            PreparedStatement statement = conn.prepareStatement(qry);
-                            statement.setInt(1, id);
-                            int r = statement.executeUpdate();
-                            break;
-                    }
-                }else{
-                    System.out.print("Connection is null");
-                }               
-            }
-        }catch(Exception e){
-            System.out.print(e.getMessage());
+        }catch(SQLException sqle){
+            System.out.print("Exception:" + sqle);
         }
-        response.sendRedirect(request.getContextPath() + "/Get_Books");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

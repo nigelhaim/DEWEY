@@ -13,8 +13,14 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <h1>Librarian's GUI</h1>
         <form action="Get_Books"  method="POST">
             <input type="submit" value="Go to Collections">
+        </form>
+        <h1>User's GUI</h1>
+        <form action="List_Discover"  method="POST">
+            
+            <input type="submit" value="Discover">
         </form>
     </body>
 </html>

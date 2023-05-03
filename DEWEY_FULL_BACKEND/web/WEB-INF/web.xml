@@ -228,6 +228,44 @@
             <!--<param-value>dewey</param-value>-->
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>List_Discover</servlet-name>
+        <servlet-class>controller.List_Discover</servlet-class>
+        <init-param>
+            <param-name>jdbcClassName</param-name>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
+            <!--<param-value>org.apache.derby.jdbc.ClientDriver</param-value>-->
+        </init-param>
+        <init-param>
+            <param-name>dbUserName</param-name>
+            <param-value>root</param-value>
+            <!--<param-value>app</param-value>-->
+        </init-param>
+        <init-param>
+            <param-name>dbPassword</param-name>
+            <param-value>root</param-value>
+            <!--<param-value>app</param-value>-->
+        </init-param>
+        <init-param>
+            <param-name>jdbcDriverURL</param-name>
+            <param-value>jdbc:mysql</param-value>
+            <!--<param-value>jdbc:derby</param-value>-->
+        </init-param>
+        <init-param>
+            <param-name>dbHostName</param-name>
+            <param-value>localhost</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbPort</param-name>
+            <param-value>3306</param-value>
+            <!--<param-value>1527</param-value>-->
+        </init-param>
+        <init-param>
+            <param-name>databaseName</param-name>
+            <param-value>dewey?useSSL=false</param-value>
+            <!--<param-value>dewey</param-value>-->
+        </init-param>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Edit_Collections</servlet-name>
         <url-pattern>/Edit_Collections</url-pattern>
@@ -251,6 +289,10 @@
     <servlet-mapping>
         <servlet-name>Edit_Book_Details</servlet-name>
         <url-pattern>/Edit_Book_Details</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>List_Discover</servlet-name>
+        <url-pattern>/List_Discover</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

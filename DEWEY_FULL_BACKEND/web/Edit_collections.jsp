@@ -99,7 +99,7 @@
                 <option></option>
                 <option>Literature</option>
                 <option>Sci-fi</option>
-                <option>Educational</option>
+                <option>Programming</option>
             </select>
             <br>
             <input name="description" placeholder="description">
