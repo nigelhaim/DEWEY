@@ -43,7 +43,7 @@
                 while(r.next())
                 { %>
                 <tr>
-                    <td><input type="checkbox" id="book" name="book" value="<%=r.getString("BOOK_ID") %>"></td>
+                    <td><input type="checkbox" id="book" name="books" value="<%=r.getString("BOOK_ID") %>"></td>
                     <td><%=r.getString("BOOK_ID") %> </td>
                     <td><%=r.getString("BOOK_TITLE") %> </td>
                     <td><%=r.getString("BOOK_AUTHOR") %> </td>
@@ -57,6 +57,7 @@
                 <% }
                 %>
             </table>
+            <input type="submit" value="Delete">
         </form>
         <br>
         <br>

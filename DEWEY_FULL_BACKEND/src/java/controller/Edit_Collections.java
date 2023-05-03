@@ -71,9 +71,8 @@ public class Edit_Collections extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        System.out.print("Uploading book");
         try ( PrintWriter out = response.getWriter()) {
-
-            
             String BOOK_TITLE = request.getParameter("title").trim();
             String BOOK_AUTHOR = request.getParameter("author").trim();
             String BOOK_TYPE = request.getParameter("type").trim();
@@ -113,15 +112,6 @@ public class Edit_Collections extends HttpServlet {
             }       
             catch(SQLException sqle){
                 System.out.print(sqle.getMessage());
-            }finally {
-                if (conn != null) {
-                    // closes the database connection
-                    try {
-                        conn.close();
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
-                }
             }
             // sets the message in request scope
             request.setAttribute("Message", message);
