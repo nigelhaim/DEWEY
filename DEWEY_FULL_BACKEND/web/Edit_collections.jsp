@@ -114,5 +114,6 @@
         <form action="BookList" method="POST">
             <input type="submit" value="Go to the list of books">
         </form>
+        <a href="https://www.figma.com/proto/1uw29jeGsvnc9Qtthtp9ny/FAP_Design?node-id=44-177&scaling=contain&page-id=3%3A325&starting-point-node-id=3%3A430">Based from this figma</a>
     </body>
 </html>

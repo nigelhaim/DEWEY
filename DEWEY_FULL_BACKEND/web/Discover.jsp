@@ -50,5 +50,9 @@
         <%
             }
         %>
+        <form action="Borrow_Books_Categories" method="POST">
+            <input type="hidden" name="category" value="all">
+            <input type="submit" value="Borrow a book">
+        </form>
     </body>
 </html>
