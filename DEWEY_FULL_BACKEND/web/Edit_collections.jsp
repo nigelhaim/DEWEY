@@ -49,7 +49,15 @@
                     <td><%=r.getString("BOOK_AUTHOR") %> </td>
                     <td><%=r.getString("BOOK_TYPE") %> </td>
                     <td><%=r.getString("BOOK_DESCRIPTION") %> </td>
-                    <td><%=r.getString("BOOK_QUANTITY") %> </td>
+                    <td>
+                        <form action="Edit_Book_Details">
+                            <input name="BOOK_ID" type="hidden" value="<%=r.getString("BOOK_ID") %>">
+                            <input name="BOOK_QUANTITY" type="hidden" value="<%=r.getString("BOOK_QUANTITY") %>">
+                            <input type="submit" value="-" name="button">
+                            <%=r.getString("BOOK_QUANTITY") %> 
+                            <input type="submit" value="+" name="button">
+                        </form>
+                    </td>
                     <td>
                         <img src="RenderImage?BOOK_ID=<%=r.getString("BOOK_ID")%>">
                     </td
@@ -57,7 +65,7 @@
                 <% }
                 %>
             </table>
-            <input type="submit" value="Delete">
+            <input type="submit" value="Delete" name="button">
         </form>
         <br>
         <br>
