@@ -19,6 +19,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Borrowed_Book_Details;
 
 /**
  *
@@ -62,6 +64,7 @@ public class List_Discover extends HttpServlet {
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                
         response.setContentType("text/html;charset=UTF-8");
          /*try ( PrintWriter out = response.getWriter()) {
             TODO output your page here. You may use following sample code. 
@@ -76,6 +79,8 @@ public class List_Discover extends HttpServlet {
             out.println("</html>");
         }*/
         try{
+            HttpSession session = request.getSession();
+            session.setAttribute("cart", new ArrayList <Borrowed_Book_Details>());  
             ArrayList<Object> Literature_books = new ArrayList();
             ArrayList<Object> Scifi_books = new ArrayList();
             ArrayList<Object> Programming_books = new ArrayList();
@@ -86,15 +91,15 @@ public class List_Discover extends HttpServlet {
                 while(books.next()){
                     switch(books.getString("BOOK_TYPE")){
                         case "Literature":
-                            System.out.print("Literature: " + books.getString("BOOK_ID"));
+                            //System.out.print("Literature: " + books.getString("BOOK_ID"));
                             Literature_books.add(books.getObject(1));
                             break;
                         case "Sci-fi":
-                            System.out.print("Sci-fi: " + books.getString("BOOK_ID"));
+                            //System.out.print("Sci-fi: " + books.getString("BOOK_ID"));
                             Scifi_books.add(books.getObject(1));
                             break;
                         case "Programming":
-                            System.out.print("Programming: " + books.getString("BOOK_ID"));
+                            //System.out.print("Programming: " + books.getString("BOOK_ID"));
                             Programming_books.add(books.getObject(1));
                             break;
                     }       

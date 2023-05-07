@@ -13,10 +13,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% 
-            ArrayList cart = new ArrayList();
-            request.setAttribute("cart", cart);
-        %>
         <h1>Hello World!</h1>
         <h1>Librarian's GUI</h1>
         <form action="Get_Books"  method="POST">

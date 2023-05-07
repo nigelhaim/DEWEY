@@ -5,26 +5,22 @@
 package controller;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Borrowed_Book_Details;
 
 /**
  *
  * @author nigel
  */
-public class RenderImage extends HttpServlet {
+public class add_to_cart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,7 +30,6 @@ public class RenderImage extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    // TODO: lasing na andy to, kailangan mo maglagay ng destroy() method
     Connection conn;
     public void init(ServletConfig config) throws ServletException
     {
@@ -51,6 +46,8 @@ public class RenderImage extends HttpServlet {
                     .append("/")
                     .append(config.getInitParameter("databaseName"));
                     //.append(config.getInitParameter(""));
+                           
+            
             conn = DriverManager.getConnection(url.toString(), username, password);
             
         }catch(SQLException sqle){
@@ -67,43 +64,48 @@ public class RenderImage extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RenderImage</title>");            
+            out.println("<title>Servlet add_to_cart</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RenderImage at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet add_to_cart at " + request.getContextPath() + "</h1>");
             out.println("</body>");
-            out.println("</html>");    
-        
+            out.println("</html>");
         }*/
-        String id = request.getParameter("BOOK_ID");
-        System.out.print("Book id: " + id);
-        
+        HttpSession session = request.getSession();
+        ArrayList <Borrowed_Book_Details> cart = (ArrayList) session.getAttribute("cart");
+        int id = Integer.parseInt(request.getParameter("book_id"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        Borrowed_Book_Details detail;
+        int book_id;
+        String book_title;
+        String book_author;
+        Date due_date = new Date(System.currentTimeMillis() + 1209600000);
         try{
             if(conn != null){
-                String query = "SELECT BOOK_COVER FROM BOOKS WHERE BOOK_ID = ?";
-                PreparedStatement stmt = conn.prepareStatement(query);
-                stmt.setString(1, id);  
-                ResultSet cover = stmt.executeQuery();
-                String imglen = "";
-                if (cover.next()){
-                    imglen = cover.getString(1);
-                    //System.out.println("Image length: " + imglen.length());
-                    int len = imglen.length();
-                    byte [] r = new byte[len];
-                    InputStream readImg = cover.getBinaryStream(1);
-                    int index=readImg.read(r, 0, len); 
-                    stmt.close();
-                    response.reset();
-                    response.setContentType("image/jpg");
-                    response.getOutputStream().write(r,0,len);
-                    response.getOutputStream().flush(); 
-                }
+                    String query = "SELECT * FROM BOOKS WHERE BOOK_ID = ?";
+                    PreparedStatement stmt = conn.prepareStatement(query);
+                    stmt.setInt(1, id);
+                    ResultSet r = stmt.executeQuery();
+                    if(r.next()){
+                        book_id = Integer.parseInt(r.getString("BOOK_ID"));
+                        book_title = r.getString("BOOK_TITLE");
+                        book_author = r.getString("BOOK_AUTHOR");  
+                        detail = new Borrowed_Book_Details(book_id, book_title, book_author, quantity, due_date); 
+                        cart.add(detail);       
+                        System.out.print("Addecd to list: "  + detail.getId());     
+                        for(Borrowed_Book_Details b : cart){
+                            System.out.print(b.getId());
+                        }
+                        request.getRequestDispatcher("View_cart.jsp").forward(request,response);
+                    }
             }else{
-                System.out.print("Connection is null");
+                    System.out.print("Connection is null");
             }
-        }catch(SQLException sqle){
-            System.out.print("Exception:" + sqle);
+            
+        }catch(Exception e){
+            System.out.print(e.getMessage());
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -124,7 +126,7 @@ public class RenderImage extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     *CC
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
@@ -137,7 +139,7 @@ public class RenderImage extends HttpServlet {
 
     /**
      * Returns a short description of the servlet.
-     
+     *
      * @return a String containing servlet description
      */
     @Override

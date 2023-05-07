@@ -35,7 +35,6 @@
             <tr>
                 <th></th>
                 <th>Book cover</th>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Type</th>
@@ -50,11 +49,13 @@
             { %>
             <form action="add_to_cart" method="POST">
                 <tr>
-                    <td><input type="submit" id="book" name="books" value="Add to cart"></td>
+                    <td>
+                        <input type="submit" id="book" name="books" value="Add to cart">
+                    </td>
                     <td>
                         <img src="RenderImage?BOOK_ID=<%=r.getString("BOOK_ID")%>">
                     </td>
-                    <td><%=r.getString("BOOK_ID") %> </td>
+                    <input type="hidden" name="book_id" value="<%=r.getString("BOOK_ID") %>" >
                     <td><%=r.getString("BOOK_TITLE") %> </td>
                     <td><%=r.getString("BOOK_AUTHOR") %> </td>
                     <td><%=r.getString("BOOK_TYPE") %> </td>
@@ -63,7 +64,7 @@
                         <% 
                             if(Integer.parseInt(r.getString("BOOK_QUANTITY")) > 0){ 
                         %>  
-                            <input type="number" placeholder="0" id="quantity" max="<%=r.getString("BOOK_QUANTITY") %>">
+                            <input type="number" placeholder="0" name="quantity" id="quantity" max="<%=r.getString("BOOK_QUANTITY") %>">
                         <%
                             }
                             else{ 

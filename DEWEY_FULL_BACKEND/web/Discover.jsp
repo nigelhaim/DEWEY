@@ -54,5 +54,9 @@
             <input type="hidden" name="category" value="all">
             <input type="submit" value="Borrow a book">
         </form>
+        <form action="View_cart" method="POST">
+            <input type="hidden" name="category" value="all">
+            <input type="submit" value="View Cart">
+        </form>
     </body>
 </html>

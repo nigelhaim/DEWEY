@@ -2,29 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package views;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Borrowed_Book_Details;
 
 /**
  *
  * @author nigel
  */
-public class RenderImage extends HttpServlet {
+public class View_cart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,7 +33,6 @@ public class RenderImage extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    // TODO: lasing na andy to, kailangan mo maglagay ng destroy() method
     Connection conn;
     public void init(ServletConfig config) throws ServletException
     {
@@ -51,6 +49,8 @@ public class RenderImage extends HttpServlet {
                     .append("/")
                     .append(config.getInitParameter("databaseName"));
                     //.append(config.getInitParameter(""));
+                           
+            
             conn = DriverManager.getConnection(url.toString(), username, password);
             
         }catch(SQLException sqle){
@@ -62,48 +62,19 @@ public class RenderImage extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*try ( PrintWriter out = response.getWriter()) {
-             TODO output your page here. You may use following sample code. 
+         /* try ( PrintWriter out = response.getWriter()) {
+           TODO output your page here. You may use following sample code. 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RenderImage</title>");            
+            out.println("<title>Servlet View_cart</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RenderImage at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet View_cart at " + request.getContextPath() + "</h1>");
             out.println("</body>");
-            out.println("</html>");    
-        
+            out.println("</html>");
         }*/
-        String id = request.getParameter("BOOK_ID");
-        System.out.print("Book id: " + id);
-        
-        try{
-            if(conn != null){
-                String query = "SELECT BOOK_COVER FROM BOOKS WHERE BOOK_ID = ?";
-                PreparedStatement stmt = conn.prepareStatement(query);
-                stmt.setString(1, id);  
-                ResultSet cover = stmt.executeQuery();
-                String imglen = "";
-                if (cover.next()){
-                    imglen = cover.getString(1);
-                    //System.out.println("Image length: " + imglen.length());
-                    int len = imglen.length();
-                    byte [] r = new byte[len];
-                    InputStream readImg = cover.getBinaryStream(1);
-                    int index=readImg.read(r, 0, len); 
-                    stmt.close();
-                    response.reset();
-                    response.setContentType("image/jpg");
-                    response.getOutputStream().write(r,0,len);
-                    response.getOutputStream().flush(); 
-                }
-            }else{
-                System.out.print("Connection is null");
-            }
-        }catch(SQLException sqle){
-            System.out.print("Exception:" + sqle);
-        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -124,7 +95,7 @@ public class RenderImage extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     *CC
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
@@ -137,7 +108,7 @@ public class RenderImage extends HttpServlet {
 
     /**
      * Returns a short description of the servlet.
-     
+     *
      * @return a String containing servlet description
      */
     @Override
