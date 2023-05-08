@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Borrowed_Book_Details;
 
 /**
@@ -74,6 +75,10 @@ public class View_cart extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }*/
+         HttpSession session = request.getSession();
+         ArrayList <Borrowed_Book_Details> cart = (ArrayList) session.getAttribute("cart");
+         request.getRequestDispatcher("View_cart.jsp").forward(request,response);
+
 
     }
 

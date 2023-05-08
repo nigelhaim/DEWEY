@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package views;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,17 +11,20 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author nigel
  */
-public class Get_Books extends HttpServlet {
+public class Get_Orders extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,7 +34,6 @@ public class Get_Books extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-  
     Connection conn;
     public void init(ServletConfig config) throws ServletException
     {
@@ -55,38 +57,38 @@ public class Get_Books extends HttpServlet {
             
         }catch(SQLException sqle){
             System.out.print("An SQL Exception occur" + sqle.getMessage());
-        }catch(ClassNotFoundException cnfe){
-            System.out.println("ClassNotFound Exception occured: " + cnfe.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Get_Orders.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. 
+         /*try ( PrintWriter out = response.getWriter()) {
+            TODO output your page here. You may use following sample code. 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Get_Books</title>");            
+            out.println("<title>Servlet Get_ORDERS</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Get_Books at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Get_ORDERS at " + request.getContextPath() + "</h1>");
             out.println("</body>");
-            out.println("</html>);
-        }   */
+            out.println("</html>");
+        }*/
         try{
             if(conn != null){
-                String query = "SELECT * FROM BOOKS";
+                String query = "SELECT * FROM BORROWED_BOOKS";
                 PreparedStatement stmt = conn.prepareStatement(query);
-                ResultSet books = stmt.executeQuery();
-                request.setAttribute("books", books);
-                request.getRequestDispatcher("Edit_collections.jsp").forward(request,response);
-            }else{
-                System.out.print("Connection is null");
+                ResultSet borrows = stmt.executeQuery();
+                request.setAttribute("borrows", borrows);
+                request.getRequestDispatcher("Librarian_Home.jsp").forward(request,response);
             }
-        }catch(SQLException sqle){
-            System.out.print("Exception:" + sqle);
+        }catch(Exception e){
+            System.out.print(e.getMessage());
         }
+
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

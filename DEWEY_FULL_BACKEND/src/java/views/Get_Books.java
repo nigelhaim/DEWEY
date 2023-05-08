@@ -2,25 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package views;
 
 import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Borrowed_Book_Details;
 
 /**
  *
  * @author nigel
  */
-public class add_to_cart extends HttpServlet {
+public class Get_Books extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -30,9 +31,11 @@ public class add_to_cart extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+  
     Connection conn;
     public void init(ServletConfig config) throws ServletException
     {
+          
         try{
             Class.forName(config.getInitParameter("jdbcClassName"));
             String username = config.getInitParameter("dbUserName");
@@ -60,60 +63,30 @@ public class add_to_cart extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /*try ( PrintWriter out = response.getWriter()) {
-             TODO output your page here. You may use following sample code. 
+            /* TODO output your page here. You may use following sample code. 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet add_to_cart</title>");            
+            out.println("<title>Servlet Get_Books</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet add_to_cart at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Get_Books at " + request.getContextPath() + "</h1>");
             out.println("</body>");
-            out.println("</html>");
-        }*/
-        HttpSession session = request.getSession();
-        ArrayList <Borrowed_Book_Details> cart = (ArrayList) session.getAttribute("cart");
-        int id = Integer.parseInt(request.getParameter("book_id"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        Borrowed_Book_Details detail;
-        int book_id;
-        String book_title;
-        String book_author;
-        Date due_date = new Date(System.currentTimeMillis() + 1209600000);
+            out.println("</html>);
+        }   */
         try{
             if(conn != null){
-                    String query = "SELECT * FROM BOOKS WHERE BOOK_ID = ?";
-                    PreparedStatement stmt = conn.prepareStatement(query);
-                    stmt.setInt(1, id);
-                    ResultSet r = stmt.executeQuery();
-                    boolean is_same = false;
-                    if(r.next()){
-                        book_id = Integer.parseInt(r.getString("BOOK_ID"));
-                        book_title = r.getString("BOOK_TITLE");
-                        book_author = r.getString("BOOK_AUTHOR");  
-                        detail = new Borrowed_Book_Details(book_id, book_title, book_author, quantity, due_date);
-                        int array_count = 0;     
-                        for(Borrowed_Book_Details b : cart){
-                            if(b.getId() == book_id){
-                                is_same = true;
-                                cart.set(array_count, detail);
-                            }   
-                            array_count++;
-                        }
-                        if(!is_same){
-                            cart.add(detail);       
-                            System.out.print("Addecd to list: "  + detail.getId()); 
-                        }
-                        request.getRequestDispatcher("View_cart.jsp").forward(request,response);
-                    }
+                String query = "SELECT * FROM BOOKS";
+                PreparedStatement stmt = conn.prepareStatement(query);
+                ResultSet books = stmt.executeQuery();
+                request.setAttribute("books", books);
+                request.getRequestDispatcher("Edit_collections.jsp").forward(request,response);
             }else{
-                    System.out.print("Connection is null");
+                System.out.print("Connection is null");
             }
-            
-        }catch(Exception e){
-            System.out.print(e.getMessage());
+        }catch(SQLException sqle){
+            System.out.print("Exception:" + sqle);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

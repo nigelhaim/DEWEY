@@ -79,8 +79,6 @@ public class List_Discover extends HttpServlet {
             out.println("</html>");
         }*/
         try{
-            HttpSession session = request.getSession();
-            session.setAttribute("cart", new ArrayList <Borrowed_Book_Details>());  
             ArrayList<Object> Literature_books = new ArrayList();
             ArrayList<Object> Scifi_books = new ArrayList();
             ArrayList<Object> Programming_books = new ArrayList();

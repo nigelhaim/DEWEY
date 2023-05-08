@@ -1,3 +1,12 @@
 05/01/2023 - Started backend project
 	- Revised Database 
 	- Recreated upload books 
+
+05/02/2023 - Completed reconsturction 
+	- Completed the reconstruction of uploading books to the database
+05/03/2023 - Book categorization 
+	- Made some changes on the categorizing of books 
+	- Made some changes on the book status based on the quantity
+05/07/2023 - View cart 
+	- Successfully maade cart through sessions 
+	

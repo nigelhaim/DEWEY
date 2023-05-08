@@ -41,6 +41,14 @@
           
             %>
         </table>
+
+        <form action="Checkout" method="POST">
+            <input type="submit" value="checkout">
+        </form>
+        <form action="Borrow_Books_Categories" method="POST">
+            <input type="hidden" name="category" value="all">
+            <input type="submit" value="return">
+        </form>
          
     </body>
 </html>
