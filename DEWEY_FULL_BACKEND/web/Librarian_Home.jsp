@@ -20,6 +20,8 @@
 
             %>
                     <tr>
+                        <th></th>
+                        <th></th>
                         <th>Order ID</th>
                         <th>Username</th>
                         <th>Book Id</th>
@@ -43,6 +45,15 @@
                                 }
 
                             %>
+                            
+                                <form action="Returned_Delete_Servlet" method="POST">
+                                    <input type="hidden" name="borrow_id" value="<%=r.getString("BORROW_ID")%>">
+                                    <input type="hidden" name="book_id" value="<%=r.getString("BOOK_ID")%>">
+                                    <input type="hidden" name="quantity" value="<%=r.getString("QUANTITY")%>">
+                                    <td><input type="submit" name="button" value="returned"></td>
+                                    <td><input type="submit" name="button" value="delete"></td>
+                                </form>
+                            </td>
                             <td><%=r.getString("BORROW_ID")%></td>
                             <td><%=r.getString("MEMBER_ID")%></td>
                             <td><%=r.getString("BOOK_ID")%></td>
