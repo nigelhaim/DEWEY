@@ -81,7 +81,7 @@ public class Borrow_Books_Categories extends HttpServlet {
                     PreparedStatement stmt = conn.prepareStatement(query);
                     ResultSet books = stmt.executeQuery();
                     request.setAttribute("categorized_books", books);
-                    request.getRequestDispatcher("Borrow_a_book.jsp").forward(request,response);
+                    request.getRequestDispatcher("Borrow_Page.jsp").forward(request,response);
                 }else{
                     System.out.print("Connection is null");
                 }
@@ -91,7 +91,7 @@ public class Borrow_Books_Categories extends HttpServlet {
                     stmt.setString(1, category);
                     ResultSet books = stmt.executeQuery();
                     request.setAttribute("categorized_books", books);
-                    request.getRequestDispatcher("Borrow_a_book.jsp").forward(request,response);
+                    request.getRequestDispatcher("Borrow_Page.jsp").forward(request,response);
             }
         }
         catch(Exception e){

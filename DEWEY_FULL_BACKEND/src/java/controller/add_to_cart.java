@@ -8,28 +8,23 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import model.Borrowed_Book_Details;
 
 /**
  *
  * @author nigel
  */
+
+
+/**
+ * This servlet is used for when a user selects a book to be added
+ * in the session's cart it creates a model of Borrowed_Book_Details 
+ * and stores it in the cart
+ */
 public class add_to_cart extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     Connection conn;
     public void init(ServletConfig config) throws ServletException
     {
@@ -59,100 +54,75 @@ public class add_to_cart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*try ( PrintWriter out = response.getWriter()) {
-             TODO output your page here. You may use following sample code. 
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet add_to_cart</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet add_to_cart at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }*/
+        //Gets the cart from the session
         HttpSession session = request.getSession();
         ArrayList <Borrowed_Book_Details> cart = (ArrayList) session.getAttribute("cart");
+        
+        //Gets the details from the selected book
         int id = Integer.parseInt(request.getParameter("book_id"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        //Renders the model Borrowed_Book_Details
         Borrowed_Book_Details detail;
         int book_id;
         String book_title;
         String book_author;
+        //Gets the current date and adds two weeks for the due date
         Date due_date = new Date(System.currentTimeMillis() + 1209600000);
         try{
             if(conn != null){
-                    String query = "SELECT * FROM BOOKS WHERE BOOK_ID = ?";
-                    PreparedStatement stmt = conn.prepareStatement(query);
-                    stmt.setInt(1, id);
-                    ResultSet r = stmt.executeQuery();
-                    boolean is_same = false;
-                    if(r.next()){
-                        book_id = Integer.parseInt(r.getString("BOOK_ID"));
-                        book_title = r.getString("BOOK_TITLE");
-                        book_author = r.getString("BOOK_AUTHOR");  
-                        detail = new Borrowed_Book_Details(book_id, book_title, book_author, quantity, due_date);
-                        int array_count = 0;     
-                        for(Borrowed_Book_Details b : cart){
-                            if(b.getId() == book_id){
-                                is_same = true;
-                                cart.set(array_count, detail);
-                            }   
-                            array_count++;
-                        }
-                        if(!is_same){
-                            cart.add(detail);       
-                            System.out.print("Addecd to list: "  + detail.getId()); 
-                        }
-                        request.getRequestDispatcher("View_cart.jsp").forward(request,response);
+                //Gets the book details based from the ID
+                String query = "SELECT * FROM BOOKS WHERE BOOK_ID = ?";
+                PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setInt(1, id);
+                ResultSet r = stmt.executeQuery();
+                boolean is_same = false;
+                //If the selected book has the book ID in the cart then it overwrites the previous quantity to the new quantity 
+                //else it just adds the book and quantity to the cart
+                if(r.next()){
+                    book_id = Integer.parseInt(r.getString("BOOK_ID"));
+                    book_title = r.getString("BOOK_TITLE");
+                    book_author = r.getString("BOOK_AUTHOR");  
+                    detail = new Borrowed_Book_Details(book_id, book_title, book_author, quantity, due_date);
+                    int array_count = 0;     
+                    for(Borrowed_Book_Details b : cart){
+                        if(b.getId() == book_id){
+                            is_same = true;
+                            cart.set(array_count, detail);
+                        }   
+                        array_count++;
                     }
+                    if(!is_same){
+                        cart.add(detail);       
+                        System.out.print("Addecd to list: "  + detail.getId()); 
+                    }
+                    request.getRequestDispatcher("View_cart.jsp").forward(request,response);
+                }
             }else{
                     System.out.print("Connection is null");
-            }
-            
+            }  
         }catch(Exception e){
             System.out.print(e.getMessage());
         }
         
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }
