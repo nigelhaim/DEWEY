@@ -6,20 +6,11 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.logging.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import model.Borrowed_Book_Details;
 
 /**
@@ -29,12 +20,9 @@ import model.Borrowed_Book_Details;
 public class List_Discover extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * This servlet gets all the books from the database
+     * and sorts them in ArrayLists depending on their book type 
+     * it will be forwarded to discover.sql
      */
     Connection conn;
     public void init(ServletConfig config) throws ServletException
@@ -66,27 +54,16 @@ public class List_Discover extends HttpServlet {
             throws ServletException, IOException {
                 
         response.setContentType("text/html;charset=UTF-8");
-         /*try ( PrintWriter out = response.getWriter()) {
-            TODO output your page here. You may use following sample code. 
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet List_Discover</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet List_Discover at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }*/
         try{
             ArrayList<Object> Literature_books = new ArrayList();
             ArrayList<Object> Scifi_books = new ArrayList();
             ArrayList<Object> Programming_books = new ArrayList();
             if(conn != null){
-                String query = "SELECT * FROM BOOKS";
+                String query = "SELECT * FROM BOOKS";//Selects all the books from the database 
                 PreparedStatement stmt = conn.prepareStatement(query);
                 ResultSet books = stmt.executeQuery();
                 while(books.next()){
+                    //Sorts their respective ArrayList based their book type
                     switch(books.getString("BOOK_TYPE")){
                         case "Literature":
                             //System.out.print("Literature: " + books.getString("BOOK_ID"));
@@ -115,43 +92,21 @@ public class List_Discover extends HttpServlet {
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }
