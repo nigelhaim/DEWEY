@@ -14,6 +14,15 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <style>
+            body{
+                font-size: 20px;
+            }
+            table{
+                width: 100%;
+                text-align: center;
+            }
+        </style>
         <table>
             <%
                 try{

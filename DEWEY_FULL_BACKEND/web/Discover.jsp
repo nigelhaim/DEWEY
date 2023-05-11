@@ -20,6 +20,7 @@
                 height:200px;
             }
         </style>
+        <h1>If the cover does not load press ctrl + a (Select all) then click anywhere in the page check the RenderImage.java servlet for more details</h1>
         <% 
             List<Objects> literature = (List) request.getAttribute("books_Literature");
             List<Objects> Scifi = (List) request.getAttribute("books_Scifi");

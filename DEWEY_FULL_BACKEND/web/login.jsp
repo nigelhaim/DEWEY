@@ -11,49 +11,42 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    <style>
+        table{
+            width: 100%;
+            text-align: center;
+        }
+    </style>
     <body>
+        <center>
+        <h1>MEMBERS</h1>
         <table>
-            <tr>
-                <th>MEMBERS</th>
-            </tr>
             <tr>
                 <th>Username</th>
                 <th>Password</th>
-                <th>Role</th>
             </tr>
             <tr>
                 <td>Member1NealG</td>
                 <td>PassNeal</td>
             </tr>
-            <tr>
-                <td>Member2KristinR</td>
-                <td>PassKristin</td>
-            </tr>
         </table>
 
+        <h1>LIBRARIANS</h1>
         <table>
-            <tr>
-                <th>LIBRARIANS</th>
-            </tr>
             <tr>
                 <th>Username</th>
                 <th>Password</th>
-                <th>Role</th>
             </tr>
             <tr>
                 <td>Lib1NathanielS</td>
                 <td>PassNatheniel</td>
             </tr>
-            <tr>
-                <td>Lib2NigelS</td>
-                <td>PassNigel</td>
-            </tr>
         </table>
         <form action="login" method="POST">
-            <h1>Username</h1>
-            <input type="text" name="username"> 
-            <input type="text" name="password">
+            <input type="text" name="username" placeholder="username"> 
+            <input type="text" name="password" placeholder="password">
             <input type="submit" value="login">
         </form>
+        </center>
     </body>
 </html>

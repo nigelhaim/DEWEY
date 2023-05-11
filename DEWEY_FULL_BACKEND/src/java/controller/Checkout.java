@@ -28,6 +28,8 @@ public class Checkout extends HttpServlet {
      * 
      * The servlet also subtracts the quantity from the QUANTITY column of the table 
      * books from the database
+     * 
+     * This servlet also clears the cart upon checking out 
      */
     Connection conn;
     public void init(ServletConfig config) throws ServletException
@@ -85,7 +87,9 @@ public class Checkout extends HttpServlet {
                     if(row2 > 0){
                         System.out.print("Success subtracted quantity!");
                     }
-                }   
+                }
+                cart.clear();
+                //Clears the cart
             }
         }catch(Exception e){
             System.out.print(e.getMessage());

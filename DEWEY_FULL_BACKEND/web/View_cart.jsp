@@ -14,6 +14,13 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <style>
+            table{
+                width: 100%;
+                text-align: center;
+            }
+            
+        </style>
         <h1>View Cart</h1>
         <%
             ArrayList <Borrowed_Book_Details> cart = (ArrayList) session.getAttribute("cart");
