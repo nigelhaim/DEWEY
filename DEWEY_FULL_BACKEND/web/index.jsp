@@ -44,6 +44,6 @@
         <%
             }
         %>
-   
+        <a href="./Search.jsp">Search</a>
     </body>
 </html>

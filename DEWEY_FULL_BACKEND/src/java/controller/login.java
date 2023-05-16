@@ -30,7 +30,8 @@ public class login extends HttpServlet {
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
         int user_id = 1;
-        
+        ArrayList<Object> search = new ArrayList();
+        session.setAttribute("search", search);
         if(username.equals("Member1NealG") && password.equals("PassNeal")){
             session.setAttribute("uname", username);
             session.setAttribute("role", "member");
