@@ -21,6 +21,8 @@
         </style>
         <h1>Search</h1>
         <form action="Search" method="POST">
+            <h1>Book ID</h1>
+            <input name="book_id" type="number" placeholder="0" value="0" required>
             <h1>Author</h1>
             <input name="author" type="text">
             <h1>Title</h1>

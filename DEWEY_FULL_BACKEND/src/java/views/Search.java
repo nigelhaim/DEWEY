@@ -55,6 +55,7 @@ public class Search extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        int id = Integer.parseInt(request.getParameter("book_id"));
         String author = request.getParameter("author");
         String title = request.getParameter("title");
         String category = request.getParameter("category");
@@ -62,12 +63,13 @@ public class Search extends HttpServlet {
             HttpSession session = request.getSession();
             ArrayList<Object> search = (ArrayList) session.getAttribute("search");
             search.clear();
-            String query = "SELECT * FROM BOOKS WHERE BOOK_AUTHOR = ? OR BOOK_TYPE = ? OR BOOK_TITLE = ?";
+            String query = "SELECT * FROM BOOKS WHERE BOOK_ID = ? OR BOOK_AUTHOR = ? OR BOOK_TYPE = ? OR BOOK_TITLE = ?";
             //Selects books from the database based from the given parameters
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, author);
-            stmt.setString(2, category);
-            stmt.setString(3, title);
+            stmt.setInt(1, id);
+            stmt.setString(2, author);
+            stmt.setString(3, category);
+            stmt.setString(4, title);
             ResultSet books = stmt.executeQuery();
             while(books.next()){
                 search.add(books.getObject(1));
