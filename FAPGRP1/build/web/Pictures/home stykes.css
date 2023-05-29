@@ -1,0 +1,146 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+*{
+	padding: 0;
+	margin: 0;
+}
+.wrapper{
+	background-color: white;
+	background-size: cover;
+	height: 100vh;
+}
+.wrapper2{
+	background-color: #115A7D;
+	background-size: cover;
+}
+.navbar{
+	position: fixed;
+	height: 80px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: #115A7D;
+}
+.navbar .logo{
+	width: 140px;
+	height: auto;
+	padding: 1px 10px;
+}
+.logo{
+	position: relative;
+	top: -10px;
+}
+.navbar ul{
+	float: right;
+	margin-right: 20px;
+}
+
+.navbar2 ul{
+	list-style: none;
+	margin: 0 8px;
+	display: flex;
+	line-height: 80px;
+}
+.navbar2 ul li{
+	color: white;
+	font-size: 20px;
+	font-family: sans-serif;
+}
+.navbar ul li{
+	list-style: none;
+	margin: 0 8px;
+	display: inline-block;
+	line-height: 80px;
+}
+.navbar ul li a{
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar2 ul li a{
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar ul li a.active,
+.navbar ul li a:hover, .navbar2 ul li a.active, .navbar2 ul li a:hover{
+	background: white;
+	border-radius: 2px;
+	color: #115A7D;
+}
+.center h1{
+	position: absolute;
+	left: 50%;
+	top: 55%;
+	transform: translate(-50%, -50%);
+	font-family: sans-serif;
+	user-select: none;
+	text-align: center;
+	color: #115A7D;
+	font-size: 50px;
+	font-weight: normal;
+	width: 900px;
+	margin-top: -260px;
+}
+p{
+   color: white;
+   font-size: 20px;
+   font-family: sans-serif;
+}
+.right{
+  float: right;
+  position: absolute;
+  right: 10px;
+  color: white;
+  font-size: 20px;
+}
+.books {
+	display: grid;
+	height: 80vh;
+	grid-template-columns: auto auto auto;
+	margin-top: 80px;
+}
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 110%;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 20px;
+}
+.book img {
+  max-width: 100%;
+  height: 350px;
+  width: 250px;;
+  margin-bottom: 10px;
+}
+
+.book h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  font-family: sans-serif;
+  color: #115A7D;
+}
+
+.book p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 0;
+  font-family: sans-serif;
+  color: #115A7D;
+}
+.navbar2 {
+  background-color: #115A7D;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
@@ -38,13 +38,13 @@ public class login extends HttpServlet {
             session.setAttribute("cart", new ArrayList <Borrowed_Book_Details>());
             session.setAttribute("user_id", user_id);  
             response.sendRedirect("index.jsp");
-        }else if(username.equals("Lib1NathanielS") && password.equals("PassNatheniel")){
+        }else if(username.equals("Lib1NathanielS") && password.equals("PassNathaniel")){
             session.setAttribute("uname", username);
             session.setAttribute("role", "librarian");
             response.sendRedirect("index.jsp");
         }
         else{
-            response.sendRedirect("WrongCredentials.jsp");
+            response.sendRedirect("/WrongCredentials.jsp");
         }
     }
 

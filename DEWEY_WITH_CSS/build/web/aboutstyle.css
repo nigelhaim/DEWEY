@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+*{
+	padding: 0;
+	margin: 0;
+}
+.wrapper{
+	background-color: white;
+	background-size: cover;
+	height: 100vh;
+}
+.wrapper2{
+	background-color: #115A7D;
+	background-size: cover;
+}
+.navbar{
+	position: fixed;
+	height: 80px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: #115A7D;
+}
+.navbar .logo{
+	width: 140px;
+	height: auto;
+	padding: 1px 10px;
+}
+.logo{
+	position: relative;
+	top: -10px;
+}
+.navbar ul{
+	float: right;
+	margin-right: 20px;
+}
+
+.navbar2 ul{
+	list-style: none;
+	margin: 0 8px;
+	display: flex;
+	line-height: 80px;
+}
+.navbar2 ul li{
+	color: white;
+	font-size: 20px;
+	font-family: sans-serif;
+}
+.navbar ul li{
+	list-style: none;
+	margin: 0 8px;
+	display: inline-block;
+	line-height: 80px;
+}
+.navbar ul li a{
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar2 ul li a{
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar ul li a.active,
+.navbar ul li a:hover, .navbar2 ul li a.active, .navbar2 ul li a:hover{
+	background: white;
+	border-radius: 2px;
+	color: #115A7D;
+}
+.wrapper .center{
+	position: absolute;
+	left: 50%;
+	top: 55%;
+	transform: translate(-50%, -50%);
+	font-family: sans-serif;
+	user-select: none;
+	text-align: justify;
+    text-justify: inter-word;
+}
+.center h1{
+	color: #115A7D;
+	font-size: 50px;
+	width: 900px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 50px;
+}
+p{
+   color: white;
+   font-size: 20px;
+   font-family: sans-serif;
+}
+.right{
+  float: right;
+  position: absolute;
+  right: 10px;
+  color: white;
+  font-size: 20px;
+}
+p2{
+	color: #115A7D;
+	font-size: 30px;
+	width: 900px;
+	text-align: center;
+	margin-bottom: 50px;
+}
+.wrapper3{
+	background-color: white;
+	background-size: cover;
+}
+.navbar3 ul{
+	display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.navbar3 ul li{
+	color: #115A7D;
+	font-size: 20px;
+	display: inline;
+	font-family: sans-serif;
+}
+
+.nav_home{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px;
+    transition: .4s;
+}
+.nav_home:hover{
+	border-radius: 2px;
+	color: #115A7D;
+    padding: 5px;
+    background-color: white;
+    transition: .4s;
+}

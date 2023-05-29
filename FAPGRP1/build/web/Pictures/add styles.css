@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+*{
+	padding: 0;
+	margin: 0;
+}
+.wrapper{
+	background-color: white;
+	background-size: cover;
+
+}
+.wrapper2{
+	background-color: #115A7D;
+	background-size: cover;
+}
+.navbar{
+	position: fixed;
+	height: 80px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: #115A7D;
+}
+.navbar .logo{
+	width: 140px;
+	height: auto;
+	padding: 1px 10px;
+}
+.logo{
+	position: relative;
+	top: -10px;
+}
+.navbar ul{
+	float: right;
+	margin-right: 20px;
+}
+
+.navbar2 ul{
+	list-style: none;
+	margin: 8px;
+	display: flex;
+	line-height: 80px;
+}
+.navbar2 ul li{
+	color: white;
+	font-size: 20px;
+	font-family: sans-serif;
+}
+.navbar ul li{
+	list-style: none;
+	margin: 0 8px;
+	display: inline-block;
+	line-height: 80px;
+}
+.navbar ul li a{
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar2 ul li a{
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar ul li a.active,
+.navbar ul li a:hover, .navbar2 ul li a.active, .navbar2 ul li a:hover{
+	background: white;
+	border-radius: 2px;
+	color: #115A7D;
+}
+
+.navbar2 {
+  background-color: #115A7D;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.main{
+	position: relative;
+	top: 15vh;
+	color: #115A7D;
+	font-family: sans-serif;
+	font-weight: lighter;
+}
+.main .stock{
+	text-align: center;
+	width: 100%;
+	font-size: 30px;
+}
+.main tr{
+	margin: 100px;
+}
+.main td, th{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.main .status{
+	background-color: grey;
+	color: white;
+	font-size: 30px;
+	padding: 5px;
+	border-radius: 5px;
+}
+.main .input_quantity{
+	background-color: grey;
+	color: white;
+	font-size: 30px;
+	width: 20%;
+	text-align: center;
+	border-radius: 5px;
+	padding: 3px;
+}
+.quantity{
+	color: white;
+	width: 10%;
+	border-radius: 5px;
+}
+.form_table{
+	width: 80%;
+	position: relative;
+	left: 1%;
+}
+.form_table .input_td{
+	padding-left: 50px;
+}
+.form_table{
+	padding: 10px;
+	font-size: 24px;
+}
+.form_table input, select{
+	font-size: 22px;
+}
+.form_table input{
+	margin-right: 50px;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #E8E8E8;
+	border: none;
+}
+
+.form_table select{
+	background-color: grey;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding-right: 25%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+.form_table option{
+	font-size: 24px;
+}
+.buttons{
+	width: 100%;
+}
+.buttons input{
+	margin: 50px;
+	padding: 15px;
+	border-radius:0px;
+	font-size: 24px;
+	background-color: #115A7D;
+	color: white;
+	border: none;
+	font-weight: bold;
+}

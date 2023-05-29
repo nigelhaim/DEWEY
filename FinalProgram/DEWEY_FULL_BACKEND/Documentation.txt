@@ -1,0 +1,34 @@
+05/01/2023 - Started backend project
+	- Revised Database 
+	- Recreated upload books 
+
+05/02/2023 - Completed reconsturction 
+	- Completed the reconstruction of uploading books to the database
+05/03/2023 - Book categorization 
+	- Made some changes on the categorizing of books 
+	- Made some changes on the book status based on the quantity
+05/07/2023 - View cart 
+	- Successfully maade cart through sessions 
+
+Di ko na na track HAHAHAHAHAH 
+
+
+Dewey is a web application designed to streamline the management of an online library. Built on the robust GlassFish server, Dewey offers a user-friendly interface for both members and librarians. With its intuitive features, the application efficiently handles book orders and provides librarians with easy access to comprehensive information about the available books.
+
+The application consists of two main user roles: Member and Librarian. Members can place book orders through Dewey, enjoying a hassle-free experience. Upon receiving an order, the librarian gains immediate visibility into the book details and quantities in stock. This enables librarians to efficiently manage the library's inventory and fulfill orders promptly.
+
+Dewey's Member interface simplifies the process of searching and selecting books, ensuring a smooth and enjoyable experience for users. Meanwhile, the Librarian interface provides librarians with a comprehensive overview of the library's stock, making it easier to monitor book availability and track orders. With Dewey, the collaboration between members and librarians is seamless, allowing for efficient book management and enhanced user satisfaction.
+
+In summary, Dewey is an online library application powered by the GlassFish server. It facilitates book ordering for members and empowers librarians with real-time access to book details and quantities. By leveraging the application's capabilities, libraries can enhance their operations and provide a superior experience for their members.
+
+==================================================================================================
+Improvement Areas Documentation for Dewey Web Application
+
+Preventing Data Redundancy
+Currently, the Dewey web application lacks a mechanism to prevent users from going back to previous pages, which can lead to data redundancy and potential inconsistencies. To address this issue, the application can implement a solution that prevents users from navigating back to pages where data submission has occurred. One approach is to utilize the Post/Redirect/Get (PRG) pattern. Upon successful form submission, the server can issue a redirect response to a different page. This ensures that if the user refreshes or goes back to the previous page, the form data will not be resubmitted, eliminating redundancy and maintaining data integrity.
+
+Implementation of Login Page in the Database
+Currently, the Dewey web application lacks a robust implementation of a login page that securely stores user credentials in the database. To improve security and user authentication, it is recommended to implement a proper login system that utilizes encryption techniques to store user passwords securely. This can be achieved by hashing and salting passwords before storing them in the database. Additionally, using prepared statements or stored procedures when interacting with the database can help prevent SQL injection attacks. Strengthening the login page's implementation will enhance the overall security and trustworthiness of the application.
+
+Search Servlet
+The search functionality in the Dewey web application can be enhanced by implementing a dedicated Search Servlet. This servlet can handle search requests from users, query the database for relevant results, and present them in a user-friendly format. The servlet should support various search criteria, such as book titles, authors, genres, or keywords. To optimize search performance, the database queries can be optimized using indexing techniques or full-text search capabilities, depending on the specific database system being used. Implementing a Search Servlet will provide users with an efficient and effective way to explore the library's collection and find the desired books.

@@ -59,6 +59,7 @@ public class Edit_Book_Details extends HttpServlet {
         try{
             String button = request.getParameter("button").trim();
             if(button.equals("Delete")){
+                System.out.print("Delete books");
                 String books[] = request.getParameterValues("books");
                 for (String book : books) {
                     int BOOK_ID = Integer.parseInt(book);

@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+*{
+	padding: 0;
+	margin: 0;
+    color: #115A7D;
+}
+.wrapper{
+	background-color: white;
+	background-size: cover;
+	height: 100vh;
+}
+.wrapper2{
+	background-color: #115A7D;
+	background-size: cover;
+}
+.navbar{
+	position: fixed;
+	height: 80px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: #115A7D;
+}
+.navbar .logo{
+	width: 140px;
+	height: auto;
+	padding: 1px 10px;
+}
+.logo{
+	position: relative;
+	top: -10px;
+}
+.navbar ul{
+	float: right;
+	margin-right: 20px;
+}
+
+.navbar2 ul{
+	list-style: none;
+	margin: 0 8px;
+	display: flex;
+	line-height: 80px;
+}
+.navbar2 ul li{
+	color: white;
+	font-size: 20px;
+	font-family: sans-serif;
+}
+.navbar ul li{
+	list-style: none;
+	margin: 0 8px;
+	display: inline-block;
+	line-height: 80px;
+}
+.navbar ul li a{
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar2 ul li a{
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar ul li a.active,
+.navbar ul li a:hover, .navbar2 ul li a.active, .navbar2 ul li a:hover{
+	background: white;
+	border-radius: 2px;
+	color: #115A7D;
+}
+.wrapper .center{
+	position: absolute;
+	left: 50%;
+	top: 55%;
+	transform: translate(-50%, -50%);
+	font-family: sans-serif;
+	user-select: none;
+	text-align: justify;
+    text-justify: inter-word;
+}
+.center h1{
+	color: #115A7D;
+	font-size: 50px;
+	width: 900px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 50px;
+}
+p{
+   color: white;
+   font-size: 20px;
+   font-family: sans-serif;
+}
+.right{
+  float: right;
+  position: absolute;
+  right: 10px;
+  color: white;
+  font-size: 20px;
+}
+p2{
+	color: #115A7D;
+	font-size: 20px;
+	width: 900px;
+	text-align: center;
+	margin-bottom: 50px;
+}
+.wrapper3{
+	background-color: white;
+	background-size: cover;
+}
+.navbar3 ul{
+	display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.navbar3 ul li{
+	color: #115A7D;
+	font-size: 20px;
+	display: inline;
+	font-family: sans-serif;
+}
+img{
+    height: 200px;
+    width: 150px;
+}
+
+.collection_table{
+    width: 95%;
+    text-align: center;
+    font-family: sans-serif;    
+}
+
+td{
+    text-align: center;
+    padding: 5px;
+}
+.collection_button{
+    width: 25px;
+    height: 20px;
+    background-color: #115A7D;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+button{
+    color: red;
+    background-color: none;
+    border: none;
+}
+
+.delete{
+    color: white;
+    background-color: #F54949;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #084cdf;
+    padding: 5px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  input[type=file]::file-selector-button:hover {
+    background: #0d45a5;
+  }
+
+.main .stock{
+	text-align: center;
+	width: 100%;
+	font-size: 20px;
+}
+.main tr{
+	margin: 100px;
+}
+.main td, th{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.main .status{
+	background-color: grey;
+	color: white;
+	font-size: 20px;
+	padding: 5px;
+	border-radius: 5px;
+}
+.main .input_quantity{
+	background-color: grey;
+	color: white;
+	font-size: 20px;
+	width: 20%;
+	text-align: center;
+	border-radius: 5px;
+	padding: 3px;
+}
+.quantity{
+	color: white;
+	width: 10%;
+	border-radius: 5px;
+}
+.form_table{
+	width: 80%;
+	position: relative;
+	left: 1%;
+}
+.form_table .input_td{
+	padding-left: 50px;
+}
+.form_table{
+	padding: 10px;
+	font-size: 15px;
+}
+.form_table input, select{
+	font-size: 15px;
+}
+.form_table input{
+	margin-right: 50px;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #E8E8E8;
+	border: none;
+}
+
+.form_table select{
+    background-color: #E8E8E8;
+	color: #115A7D;
+	border: none;
+	border-radius: 5px;
+	padding-right: 25%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+.form_table option{
+	font-size: 15px;
+}
+.buttons{
+	width: 100%;
+}
+.buttons input{
+	margin: 50px;
+	padding: 15px;
+	border-radius: 50px;
+	font-size: 15px;
+	background-color: #115A7D;
+	color: white;
+	border: none;
+	font-weight: bold;
+}
+
+.nav_home{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px;
+    transition: .4s;
+}
+.nav_home:hover{
+	border-radius: 2px;
+	color: #115A7D;
+    padding: 5px;
+    background-color: white;
+    transition: .4s;
+}

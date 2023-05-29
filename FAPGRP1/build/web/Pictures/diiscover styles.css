@@ -1,0 +1,133 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+*{
+	padding: 0;
+	margin: 0;
+}
+.wrapper2{
+	background-color: #115A7D;
+	background-size: cover;
+}
+.navbar{
+	position: fixed;
+	height: 80px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: #115A7D;
+}
+.navbar .logo{
+	width: 140px;
+	height: auto;
+	padding: 1px 10px;
+}
+.logo{
+	position: relative;
+	top: -10px;
+}
+.navbar ul{
+	float: right;
+	margin-right: 20px;
+}
+
+.navbar2 ul{
+	list-style: none;
+	margin: 0 8px;
+	display: flex;
+	line-height: 80px;
+}
+.navbar2 ul li{
+	color: white;
+	font-size: 20px;
+	font-family: sans-serif;
+}
+.navbar ul li{
+	list-style: none;
+	margin: 0 8px;
+	display: inline-block;
+	line-height: 80px;
+}
+.navbar ul li a{
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar2 ul li a{
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar ul li a.active,
+.navbar ul li a:hover, .navbar2 ul li a.active, .navbar2 ul li a:hover{
+	background: white;
+	border-radius: 2px;
+	color: #115A7D;
+}
+p{
+   color: white;
+   font-size: 20px;
+   font-family: sans-serif;
+}
+.right{
+  float: right;
+  position: absolute;
+  right: 10px;
+  color: white;
+  font-size: 20px;
+}
+.navbar2 {
+  background-color: #115A7D;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.genre {
+	display: grid;
+	height: 80vh;
+	grid-template-columns: auto auto;
+	margin-top: 120px;
+	margin-left: 50px;
+}
+img {
+  height: 350px;
+  width: 250px;;
+  margin-bottom: 10px;
+  margin-right: 50px;
+}
+.center .button{
+  margin-left: 215px;
+  margin-top: 20px;
+}
+.button button{
+	height: 60px;
+	width: 120px;
+	font-size: 812x;
+	font-weight: 600;
+	color: white;
+	background: #115A7D;
+	outline: none;
+	cursor: pointer;
+	border: 1px solid white;
+	border-radius: 25px;
+	transition: .4s;
+}
+.button button:hover{
+	background: black;
+	color: white;
+}
+h1{
+   color: #115A7D;
+   font-family: sans-serif;
+}
+a {
+  text-decoration: none;
+  color: white;
+  
+}

@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <context-param>
+        <param-name>jdbcClassName</param-name>
+        <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbUserName</param-name>
+        <param-value>app</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPassword</param-name>
+        <param-value>app</param-value>
+    </context-param>
+    <context-param>
+        <param-name>jdbcDriverURL</param-name>
+        <param-value>jdbc:mysql</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbHostName</param-name>
+        <param-value>localhost</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPort</param-name>
+        <param-value>3306</param-value>
+    </context-param>
+    <context-param>
+        <param-name>databaseName</param-name>
+        <param-value>dewey?useSSL=false</param-value>
+    </context-param>
     <servlet>
         <servlet-name>Edit_Collections</servlet-name>
         <servlet-class>controller.Edit_Collections</servlet-class>
@@ -570,6 +598,10 @@
             <!--<param-value>dewey</param-value>-->
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>Top_Books</servlet-name>
+        <servlet-class>views.Top_Books</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Edit_Collections</servlet-name>
         <url-pattern>/Edit_Collections</url-pattern>
@@ -629,6 +661,10 @@
     <servlet-mapping>
         <servlet-name>Search</servlet-name>
         <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Top_Books</servlet-name>
+        <url-pattern>/Top_Books</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
